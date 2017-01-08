@@ -19,7 +19,7 @@ import Common._
 object Euler46 extends App {
 
   //wrapping iterators in streams to memoize results for subsequent calls
-  private lazy val primes = primesIterator().toStream
+  private lazy val primes  = primesIterator().toStream
   private lazy val squares = squaresIterator().toStream
 
   private def oddComposites() = compositesIterator().filter(_ % 2 != 0)
@@ -33,7 +33,9 @@ object Euler46 extends App {
   }
 
   def solve: Long = {
-    oddComposites().find(!satisfiesConjecture(_)).getOrElse(-1)
+    oddComposites()
+      .find(!satisfiesConjecture(_))
+      .getOrElse(-1)
   }
 
   println(s"Euler46 answer: $solve")

@@ -5,7 +5,7 @@ import scala.collection.AbstractIterator
 object Common {
 
   private def longIterator(start: Long) = new AbstractIterator[Long] {
-    private var i = start
+    private var i        = start
     def hasNext: Boolean = true
     def next(): Long = {
       val result = i
@@ -15,17 +15,17 @@ object Common {
   }
 
   def compositesIterator() = new AbstractIterator[Long] {
-    private val numbers = longIterator(2)
-    private val primes = primesIterator()
+    private val numbers   = longIterator(2)
+    private val primes    = primesIterator()
     private var nextPrime = primes.next()
 
     override def hasNext: Boolean = true
 
     override def next(): Long = {
-      var candidate = numbers.next()
+      var candidate   = numbers.next()
       def isComposite = candidate < nextPrime
-      while(!isComposite) {
-        if(candidate == nextPrime) {
+      while (!isComposite) {
+        if (candidate == nextPrime) {
           nextPrime = primes.next()
           candidate = numbers.next()
         }
@@ -35,7 +35,7 @@ object Common {
   }
 
   def squaresIterator() = new AbstractIterator[Long] {
-    var i = 0L
+    var i                         = 0L
     override def hasNext: Boolean = true
     override def next(): Long = {
       i += 1
